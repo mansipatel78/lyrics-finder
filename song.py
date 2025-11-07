@@ -1,5 +1,5 @@
-import streamlit as st
 from lyricsgenius import Genius
+import streamlit as st
 import requests
 
 st.title("🎵 Lyrics Finder App")
@@ -7,7 +7,7 @@ song = st.text_input("Enter Song Name:")
 artist = st.text_input("Artist (optional):")
 
 if st.button("Find Lyrics"):
-    genius = Genius("k6fdieOY12aWgCDC6SWYqfXOZrxpguNe5hY14icmh831D45Q1_L0hX8pVuf4FZsh")
+    genius = Genius(st.secrets["GENIUS_TOKEN"])
     song_data = genius.search_song(song)
     if song_data:
         st.text_area("Lyrics", song_data.lyrics, height=400)
